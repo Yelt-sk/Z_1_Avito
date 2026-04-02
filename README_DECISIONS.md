@@ -1,11 +1,14 @@
 # README_DECISIONS
 
 ## Принятые решения
-- `Qwen 3` обязателен как часть inference, но работает только после shortlist.
+- `Qwen 3` обязателен как часть inference, но работает после candidate retrieval, а не как blind classifier по всему словарю.
 - По умолчанию система precision-first.
 - Не создаем черновик для исходной микрокатегории объявления.
 - Если модель сомневается, считаем категорию bundled mention.
 - В качестве первой версии используем stdlib-only стек без внешних NLP-зависимостей.
+- Verification и draft generation разделены на два пользовательских шага.
+- Для verifier используется короткий JSON-формат и `/no_think`.
+- Введён `hybrid-override`, чтобы слабый негативный ответ модели не ломал сильный локальный сигнал.
 
 ## Почему без тяжелого NLP на старте
 - репозиторий был пустой;
@@ -24,3 +27,6 @@
 - добавить batch prediction;
 - сохранять evaluation report в файл;
 - добавить отдельные golden tests для prompt-ов и JSON repair.
+- сделать отдельный cache для verification по одинаковым текстам;
+- отображать в UI пошаговый progress `retrieve -> verify -> generate`;
+- хранить причины `hybrid-override` и rule fallback в более структурированном виде.

@@ -20,6 +20,18 @@ python -m pip install -e .
 ## Первый запуск
 
 ```bash
+python D:\projects\Avito\test_interface.py
+```
+
+Рекомендуемый порядок ручной проверки:
+1. Ввести текст объявления.
+2. Нажать `Определить категории`.
+3. Посмотреть `verifiedMicrocategories`.
+4. Нажать `Сгенерировать draft` только если категории подтверждены.
+
+CLI-вариант:
+
+```bash
 python -m avito_splitter predict --item data/input_item.json --dict data/microcategories.json --debug
 ```
 
@@ -32,6 +44,12 @@ http://127.0.0.1:8090/v1/chat/completions
 
 Если endpoint недоступен, клиент автоматически переключается на `llama-cli.exe`.
 
+Для быстрых ответов verifier использует:
+- короткий JSON-формат;
+- `max_tokens=32`;
+- `/no_think`;
+- жёсткий timeout.
+
 ## Режим без Qwen 3
 
 ```bash
@@ -43,7 +61,7 @@ python -m avito_splitter predict --item data/input_item.json --dict data/microca
 ## Проверка тестов
 
 ```bash
-pytest
+python -m pytest -q
 ```
 
 ## Проверка качества на примерах

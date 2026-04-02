@@ -1,12 +1,12 @@
 # README_PROMPTS
 
 ## Prompt contract для verifier
-Verifier получает JSON с:
-- задачей;
-- policy;
-- исходным объявлением;
-- shortlist-кандидатами;
-- feature summary для каждого кандидата.
+Verifier получает короткий JSON с:
+- instruction;
+- requiredOutput;
+- sourceMcId;
+- description;
+- candidates.
 
 Модель обязана вернуть только JSON-массив объектов:
 
@@ -14,9 +14,7 @@ Verifier получает JSON с:
 [
   {
     "mcId": 101,
-    "isStandalone": true,
-    "confidence": 0.91,
-    "rationale": "The text says the service is done separately."
+    "isStandalone": true
   }
 ]
 ```
@@ -25,6 +23,8 @@ Verifier получает JSON с:
 - если случай неоднозначный, `isStandalone = false`;
 - никаких markdown-блоков;
 - никакого дополнительного текста вне JSON.
+- verifier вызывается с `/no_think`;
+- token budget для verifier минимальный.
 
 ## Prompt contract для draft generation
 Generator получает:
@@ -51,4 +51,5 @@ Generator получает:
 - сначала обычный запрос;
 - если JSON сломан, используется извлечение первого JSON-фрагмента;
 - если ответ неполный, недостающие решения добираются rule fallback;
+- если модель даёт слабый отрицательный ответ на фоне сильного rule-сигнала, включается `hybrid-override`;
 - если draft пустой, используется простой fallback-текст.
