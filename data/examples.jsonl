@@ -1,0 +1,4 @@
+{"itemId": 5001, "mcId": 201, "mcTitle": "Ремонт квартир и домов под ключ", "description": "Делаем ремонт квартир под ключ, включая электрику и сантехнику.", "shouldSplit": false, "expectedDraftMcIds": []}
+{"itemId": 5002, "mcId": 201, "mcTitle": "Ремонт квартир и домов под ключ", "description": "Выполняем электрику отдельно, сантехнику отдельно, а также ремонт под ключ.", "shouldSplit": true, "expectedDraftMcIds": [101, 102]}
+{"itemId": 5003, "mcId": 201, "mcTitle": "Ремонт квартир и домов под ключ", "description": "Отдельно делаем укладку плитки и монтаж натяжных потолков. Берем и комплексный ремонт под ключ.", "shouldSplit": true, "expectedDraftMcIds": [103, 104]}
+{"itemId": 5004, "mcId": 101, "mcTitle": "Сантехника", "description": "Сантехника, разводка труб, установка смесителей. Работаем только по сантехническим задачам.", "shouldSplit": false, "expectedDraftMcIds": []}
